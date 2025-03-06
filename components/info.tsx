@@ -39,6 +39,12 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         </p>
       </div>
       <hr className="my-4" />
+      {data.description && (
+        <>
+          <p className="text-2xl text-gray-900">{data.description}</p>
+          <hr className="my-4" />
+        </>
+      )}
       <div className="mt-10 flex items-center gap-x-3">
         {currentQuantity > 0 ? (
           <div className="flex items-center gap-x-3">

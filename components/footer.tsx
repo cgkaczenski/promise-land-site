@@ -1,9 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="bg-white border-t">
+    <footer className="bg-white">
       <div className="mx-auto py-10">
         <p className="text-center text-xs text-black">
-          &copy; 2025 Store, Inc. All rights reserved.
+          Promised Land is a 501(c)(3) nonprofit charity registered in the US
+          under EIN: pending
         </p>
       </div>
     </footer>

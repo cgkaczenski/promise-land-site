@@ -10,8 +10,8 @@ import "./globals.css";
 const font = Urbanist({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Promise Land",
-  description: "Promise Land Orphanage",
+  title: "Promised Land",
+  description: "Promised Land Orphanage",
 };
 
 export default function RootLayout({
