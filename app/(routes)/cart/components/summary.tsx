@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Button from "@/components/ui/button";
@@ -9,11 +9,17 @@ import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
 
-const Summary = () => {
+interface SummaryProps {
+  isPhoneNumberValid: boolean;
+}
+
+const Summary = ({ isPhoneNumberValid }: SummaryProps) => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const quantities = useCart((state) => state.quantities);
+  const phoneNumber = useCart((state) => state.phoneNumber);
   const removeAll = useCart((state) => state.removeAll);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (searchParams.get("success")) {
@@ -32,15 +38,29 @@ const Summary = () => {
   }, 0);
 
   const onCheckout = async () => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-      {
-        productIds: items.map((item) => item.id),
-        quantities: items.map((item) => quantities[item.id] || 1),
-      }
-    );
+    // Don't proceed if phone number is invalid
+    if (!isPhoneNumberValid) {
+      toast.error("Please enter a valid phone number or leave it empty");
+      return;
+    }
 
-    window.location = response.data.url;
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        {
+          productIds: items.map((item) => item.id),
+          quantities: items.map((item) => quantities[item.id] || 1),
+          ...(phoneNumber ? { phone: phoneNumber } : {}),
+        }
+      );
+
+      window.location = response.data.url;
+    } catch (error) {
+      toast.error("Something went wrong with checkout.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -54,10 +74,10 @@ const Summary = () => {
       </div>
       <Button
         onClick={onCheckout}
-        disabled={items.length === 0}
+        disabled={items.length === 0 || isLoading || !isPhoneNumberValid}
         className="w-full mt-6"
       >
-        Checkout
+        {isLoading ? "Processing..." : "Checkout"}
       </Button>
     </div>
   );

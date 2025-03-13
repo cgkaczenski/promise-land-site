@@ -7,10 +7,12 @@ import { Product } from "@/types";
 interface CartStore {
   items: Product[];
   quantities: { [key: string]: number };
+  phoneNumber: string;
   addItem: (data: Product) => void;
   removeItem: (id: string) => void;
   decrementItem: (id: string) => void;
   removeAll: () => void;
+  setPhoneNumber: (phone: string) => void;
 }
 
 const useCart = create(
@@ -18,6 +20,7 @@ const useCart = create(
     (set, get) => ({
       items: [],
       quantities: {},
+      phoneNumber: "",
       addItem: (data: Product) => {
         const currentItems = get().items;
         const currentQuantities = get().quantities;
@@ -71,6 +74,7 @@ const useCart = create(
         toast.success("Item quantity decreased.");
       },
       removeAll: () => set({ items: [], quantities: {} }),
+      setPhoneNumber: (phone: string) => set({ phoneNumber: phone }),
     }),
     {
       name: "cart-storage",
