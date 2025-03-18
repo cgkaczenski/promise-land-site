@@ -8,6 +8,16 @@ export interface Product {
   images: Image[];
 }
 
+export interface Post {
+  id: string;
+  category: Category;
+  name: string;
+  description: string;
+  isFeatured: boolean;
+  images: Image[];
+  date: Date;
+}
+
 export interface Image {
   id: string;
   url: string;

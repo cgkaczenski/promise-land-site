@@ -54,13 +54,13 @@ const Info: React.FC<InfoProps> = ({ data }) => {
               <IconButton onClick={onAdd} icon={<Plus size={20} />} />
             </div>
             <Button onClick={onAddToCart} className="flex items-center gap-x-2">
-              Update Gift
+              Add Another Donation
               <ShoppingCart size={20} />
             </Button>
           </div>
         ) : (
           <Button onClick={onAddToCart} className="flex items-center gap-x-2">
-            Add Gift
+            Add Donation
             <ShoppingCart size={20} />
           </Button>
         )}

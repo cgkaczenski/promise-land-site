@@ -1,5 +1,4 @@
 import Container from "@/components/ui/container";
-import Billboard from "@/components/ui/billboard";
 import ProductCard from "@/components/ui/product-card";
 import NoResults from "@/components/ui/no-results";
 
@@ -8,23 +7,16 @@ import getCategory from "@/actions/get-category";
 
 export const revalidate = 0;
 
-interface CategoryPageProps {
-  params: {
-    categoryId: string;
-  };
-}
-
-const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
+const DonatePage: React.FC = async () => {
   const products = await getProducts({
-    categoryId: params.categoryId,
+    categoryId: "876c7bf0-3517-4a63-a229-0e0475917e9a",
   });
-  const category = await getCategory(params.categoryId);
+  const category = await getCategory("876c7bf0-3517-4a63-a229-0e0475917e9a");
 
   return (
     <div className="bg-white">
       <Container>
-        <Billboard data={category.billboard} />
-        <div className="px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="px-4 sm:px-6 lg:px-8 py-8">
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
             <div className="mt-6 lg:col-span-4 lg:mt-0">
               <p className="pb-6 text-lg/8 text-gray-600">
@@ -44,4 +36,4 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   );
 };
 
-export default CategoryPage;
+export default DonatePage;
