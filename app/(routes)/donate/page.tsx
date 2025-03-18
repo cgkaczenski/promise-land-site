@@ -1,13 +1,12 @@
 import Container from "@/components/ui/container";
-import ProductCard from "@/components/ui/product-card";
-import NoResults from "@/components/ui/no-results";
+import ProductList from "@/components/product-list";
 
 import getProducts from "@/actions/get-products";
 import getCategory from "@/actions/get-category";
 
 export const revalidate = 0;
 
-const DonatePage: React.FC = async () => {
+const DonatePage = async () => {
   const products = await getProducts({
     categoryId: "876c7bf0-3517-4a63-a229-0e0475917e9a",
   });
@@ -15,23 +14,27 @@ const DonatePage: React.FC = async () => {
 
   return (
     <div className="bg-white">
-      <Container>
-        <div className="px-4 sm:px-6 lg:px-8 py-8">
-          <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
-            <div className="mt-6 lg:col-span-4 lg:mt-0">
-              <p className="pb-6 text-lg/8 text-gray-600">
-                {category.description}
+      <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+        <Container>
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
+            <div className="mx-auto max-w-2xl lg:mx-0">
+              <p className="text-base font-semibold text-indigo-600">
+                Your donation makes a difference
               </p>
-              {products.length === 0 && <NoResults />}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {products.map((item) => (
-                  <ProductCard key={item.id} data={item} />
-                ))}
-              </div>
+              <h2 className="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                Donate Now
+              </h2>
+              <p className="mt-6 text-lg text-gray-500">
+                {category?.description ||
+                  "Support our cause with your generous donation."}
+              </p>
+            </div>
+            <div className="mt-12">
+              <ProductList title="" items={products} />
             </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 };

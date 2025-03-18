@@ -109,12 +109,12 @@ const CartPage = () => {
     <div className="bg-white">
       <Container>
         <div className="px-4 py-16 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-black">Gift Basket</h1>
+          <h1 className="text-3xl font-bold text-black">Donation Cart</h1>
           <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
             <div className="lg:col-span-7">
               {items.length === 0 && (
                 <p className="text-neutral-500">
-                  No items added to gift basket.
+                  No items added to donation cart.
                 </p>
               )}
               <ul>

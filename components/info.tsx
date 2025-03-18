@@ -7,6 +7,7 @@ import Button from "@/components/ui/button";
 import IconButton from "@/components/ui/icon-button";
 import { Product } from "@/types";
 import useCart from "@/hooks/use-cart";
+import { useRouter } from "next/navigation";
 
 interface InfoProps {
   data: Product;
@@ -14,9 +15,11 @@ interface InfoProps {
 
 const Info: React.FC<InfoProps> = ({ data }) => {
   const cart = useCart();
+  const router = useRouter();
 
   const onAddToCart = () => {
     cart.addItem(data);
+    router.push("/cart");
   };
 
   const existingItem = cart.items.find((item) => item.id === data.id);
@@ -60,7 +63,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
           </div>
         ) : (
           <Button onClick={onAddToCart} className="flex items-center gap-x-2">
-            Add Donation
+            Donate Now!
             <ShoppingCart size={20} />
           </Button>
         )}

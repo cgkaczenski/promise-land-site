@@ -11,6 +11,13 @@ import usePreviewModal from "@/hooks/use-preview-modal";
 import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 interface ProductCard {
   data: Product;
 }
@@ -34,6 +41,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     event.stopPropagation();
 
     cart.addItem(data);
+    router.push("/cart");
   };
 
   return (
@@ -51,14 +59,39 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
           <div className="flex gap-x-6 justify-center">
-            <IconButton
-              onClick={onPreview}
-              icon={<Expand size={20} className="text-gray-600" />}
-            />
-            <IconButton
-              onClick={onAddToCart}
-              icon={<ShoppingCart size={20} className="text-gray-600" />}
-            />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <IconButton
+                      onClick={onPreview}
+                      icon={<Expand size={20} className="text-gray-600" />}
+                    />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Expand</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <IconButton
+                      onClick={onAddToCart}
+                      icon={
+                        <ShoppingCart size={20} className="text-gray-600" />
+                      }
+                    />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Donate Now!</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>
@@ -67,7 +100,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <p className="font-semibold text-lg">{data.name}</p>
         <p className="text-sm text-gray-500">{data.category?.name}</p>
       </div>
-      {/* Price & Reiew */}
+      {/* Price & Review */}
       <div className="flex items-center justify-between">
         <Currency value={data?.price} />
       </div>
