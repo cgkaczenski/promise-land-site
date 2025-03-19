@@ -128,7 +128,7 @@ const CartPage = () => {
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="mt-8 border-t border-gray-200 pt-6"
+                    className="mt-8  border-gray-200 pt-6"
                     onChange={() => form.trigger("phoneNumber")}
                   >
                     <FormField

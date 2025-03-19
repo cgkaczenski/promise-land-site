@@ -44,7 +44,7 @@ const useCart = create(
             [data.id]: 1,
           },
         });
-        toast.success("Item added to gift basket.");
+        toast.success("Item added to donation cart.");
       },
       removeItem: (id: string) => {
         const newQuantities = { ...get().quantities };
@@ -53,7 +53,7 @@ const useCart = create(
           items: [...get().items.filter((item) => item.id !== id)],
           quantities: newQuantities,
         });
-        toast.success("Item removed from gift basket.");
+        toast.success("Item removed from donation cart.");
       },
       decrementItem: (id: string) => {
         const currentQuantities = get().quantities;

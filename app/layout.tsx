@@ -2,7 +2,7 @@ import { Urbanist } from "next/font/google";
 
 import ModalProvider from "@/providers/modal-provider";
 import ToastProvider from "@/providers/toast-provider";
-import Navbar from "@/components/navbar";
+import NavbarWrapper from "@/components/navbar-wrapper";
 import Footer from "@/components/footer";
 
 import "./globals.css";
@@ -22,11 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ToastProvider />
-        <ModalProvider />
-        <Navbar />
-        {children}
-        <Footer />
+        {/* Add a global CSS class for gradients directly in globals.css */}
+        <div className="gradient-container">
+          <ToastProvider />
+          <ModalProvider />
+          <NavbarWrapper />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

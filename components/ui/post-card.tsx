@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { format } from "date-fns";
 import { Post } from "@/types";
 
 interface PostCard {
@@ -16,14 +15,10 @@ const PostCard: React.FC<PostCard> = ({ data }) => {
     router.push(`/donate`);
   };
 
-  const formattedDate = data.date
-    ? format(new Date(data.date), "MMM d, yyyy")
-    : "No date";
-
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4"
+      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 hover:bg-gray-00 transition-colors duration-200"
     >
       <h2 className="font-bold text-xl text-gray-900">{data.name}</h2>
 
@@ -33,7 +28,7 @@ const PostCard: React.FC<PostCard> = ({ data }) => {
           src={data.images?.[0]?.url || "/placeholder.png"}
           alt=""
           fill
-          className="aspect-square object-cover rounded-md"
+          className="aspect-square object-cover rounded-md transition-all duration-200 group-hover:brightness-90"
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute inset-0 flex items-center justify-center">
           <button
@@ -41,9 +36,9 @@ const PostCard: React.FC<PostCard> = ({ data }) => {
               e.stopPropagation();
               router.push("/donate");
             }}
-            className="rounded-full flex items-center justify-center bg-white border border-gray-200 p-2 hover:scale-110 transition"
+            className="rounded-full flex items-center justify-center bg-indigo-600 p-2 hover:scale-110 transition"
           >
-            <span className="text-gray-600 font-medium px-2">Donate Now!</span>
+            <span className="text-white font-medium px-2">Donate Now!</span>
           </button>
         </div>
       </div>

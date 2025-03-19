@@ -56,13 +56,19 @@ const Info: React.FC<InfoProps> = ({ data }) => {
               <span className="text-xl font-medium">{currentQuantity}</span>
               <IconButton onClick={onAdd} icon={<Plus size={20} />} />
             </div>
-            <Button onClick={onAddToCart} className="flex items-center gap-x-2">
+            <Button
+              onClick={onAddToCart}
+              className="flex items-center gap-x-2 bg-indigo-600"
+            >
               Add Another Donation
               <ShoppingCart size={20} />
             </Button>
           </div>
         ) : (
-          <Button onClick={onAddToCart} className="flex items-center gap-x-2">
+          <Button
+            onClick={onAddToCart}
+            className="flex items-center gap-x-2 bg-indigo-600"
+          >
             Donate Now!
             <ShoppingCart size={20} />
           </Button>
