@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import Link from "next/link";
 
 import Container from "@/components/ui/container";
 import useCart from "@/hooks/use-cart";
@@ -19,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import Button from "@/components/ui/button";
 
 export const revalidate = 0;
 
@@ -113,9 +115,16 @@ const CartPage = () => {
           <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
             <div className="lg:col-span-7">
               {items.length === 0 && (
-                <p className="text-neutral-500">
-                  No items added to donation cart.
-                </p>
+                <div className="text-center space-y-4">
+                  <p className="text-neutral-500">
+                    No items added to donation cart.
+                  </p>
+                  <Link href="/donate">
+                    <Button className="mt-2 bg-indigo-600">
+                      Go to Donate Page
+                    </Button>
+                  </Link>
+                </div>
               )}
               <ul>
                 {items.map((item) => (

@@ -17,7 +17,7 @@ const DonatePage = async () => {
       <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
         <Container>
           <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-            <div className="mx-auto max-w-2xl lg:mx-0">
+            <div className="max-w-2xl">
               <p className="text-base font-semibold text-indigo-600">
                 Your donation makes a difference
               </p>

@@ -1,12 +1,12 @@
 "use client";
 
-import { ShoppingBag } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { ShoppingCart } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 import Button from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
-import Currency from "@/components/ui/currency";
 
 const NavbarActions = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,27 +16,35 @@ const NavbarActions = () => {
   }, []);
 
   const router = useRouter();
+  const pathname = usePathname();
   const cart = useCart();
-
-  const totalPrice = cart.items.reduce((total, item) => {
-    const quantity = cart.quantities[item.id] || 1;
-    return total + Number(item.price) * quantity;
-  }, 0);
 
   if (!isMounted) {
     return null;
   }
 
+  const handleCartClick = () => {
+    if (cart.items.length === 0) {
+      if (pathname === "/donate") {
+        // Show notification if on donate page with empty cart
+        toast.error("Your donation cart is empty. Please choose a donation");
+      } else {
+        // Navigate to donate page if cart is empty
+        router.push("/donate");
+      }
+    } else {
+      // Navigate to cart page if cart has items
+      router.push("/cart");
+    }
+  };
+
   return (
     <div className="ml-auto flex items-center gap-x-4">
       <Button
-        onClick={() => router.push("/cart")}
+        onClick={handleCartClick}
         className="flex items-center rounded-full bg-indigo-600 px-4 py-2"
       >
-        <ShoppingBag size={20} color="white" />
-        <span className="ml-2 text-sm font-medium text-white">
-          <Currency value={totalPrice} />
-        </span>
+        <ShoppingCart size={20} color="white" />
       </Button>
     </div>
   );

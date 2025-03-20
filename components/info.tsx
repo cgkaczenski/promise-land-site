@@ -60,8 +60,8 @@ const Info: React.FC<InfoProps> = ({ data }) => {
               onClick={onAddToCart}
               className="flex items-center gap-x-2 bg-indigo-600"
             >
-              Add Another Donation
               <ShoppingCart size={20} />
+              Add Another Donation
             </Button>
           </div>
         ) : (
@@ -69,8 +69,8 @@ const Info: React.FC<InfoProps> = ({ data }) => {
             onClick={onAddToCart}
             className="flex items-center gap-x-2 bg-indigo-600"
           >
-            Donate Now!
             <ShoppingCart size={20} />
+            Donate!
           </Button>
         )}
       </div>
