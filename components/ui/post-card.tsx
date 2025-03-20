@@ -18,7 +18,7 @@ const PostCard: React.FC<PostCard> = ({ data }) => {
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 hover:bg-gray-00 transition-colors duration-200 relative"
+      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 hover:bg-gray-00 transition-colors duration-200 relative h-full flex flex-col"
     >
       <h2 className="font-bold text-xl text-gray-900">{data.name}</h2>
 
@@ -45,18 +45,18 @@ const PostCard: React.FC<PostCard> = ({ data }) => {
       </div>
 
       {/* Description text */}
-      <div>
+      <div className="flex-grow">
         <p className="text-sm text-gray-500">{data.description}</p>
       </div>
 
-      {/* Button below text for md and smaller screens */}
-      <div className="lg:hidden mt-2 flex justify-end">
+      {/* Button below text for all screens, positioned consistently */}
+      <div className="flex justify-end mt-auto pt-2">
         <button
           onClick={(e) => {
             e.stopPropagation();
             router.push("/donate");
           }}
-          className="rounded-full flex items-center justify-center bg-indigo-600 p-2 hover:scale-110 transition"
+          className="rounded-full flex items-center justify-center bg-indigo-600 p-2 hover:scale-110 transition lg:hidden"
         >
           <span className="text-white font-medium px-2">Donate Now!</span>
         </button>
