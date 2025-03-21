@@ -24,17 +24,20 @@ const NavbarActions = () => {
   }
 
   const handleCartClick = () => {
+    if (pathname === "/cart") {
+      return;
+    }
+
+    if (cart.items.length !== 0) {
+      router.push("/cart");
+    }
+
     if (cart.items.length === 0) {
       if (pathname === "/donate") {
-        // Show notification if on donate page with empty cart
-        toast.error("Your donation cart is empty. Please choose a donation");
+        router.push("/cart");
       } else {
-        // Navigate to donate page if cart is empty
         router.push("/donate");
       }
-    } else {
-      // Navigate to cart page if cart has items
-      router.push("/cart");
     }
   };
 
