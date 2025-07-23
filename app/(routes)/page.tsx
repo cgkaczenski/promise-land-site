@@ -43,7 +43,7 @@ const HomePage = async () => {
               Promised Land Orphanage
             </h1>
             <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-              Help us make a difference in lives of children in need.
+              Help us make a difference in the lives of children in need.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link

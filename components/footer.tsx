@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="mx-auto px-2 mt-12 md:mt-32 max-w-7xl">
         <p className="text-center text-xs text-black">
           Promised Land is a 501(c)(3) nonprofit charity registered in the US
-          under EIN: pending
+          under EIN: 33-3736069
         </p>
       </div>
     </footer>
