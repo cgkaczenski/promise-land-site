@@ -6,10 +6,10 @@ const ActivityPage: React.FC = async () => {
   const posts = await getPosts({});
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+    <div className="bg-gradient-to-b from-gray-50 to-white">
       <Container>
-        <div className="px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center mb-10">
+        <div className="px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center mb-6">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Activity Feed
             </h1>

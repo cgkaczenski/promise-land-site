@@ -15,9 +15,9 @@ const DonatePage = async () => {
 
   return (
     <div className="bg-white">
-      <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <div className="bg-gradient-to-b from-gray-50 to-white">
         <Container>
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
             {/* Using flexbox for layout */}
             <div className="flex flex-col lg:flex-row">
               {/* Main content column */}
@@ -42,7 +42,7 @@ const DonatePage = async () => {
                 </div>
 
                 {/* Products section */}
-                <div className="mt-12">
+                <div className="mt-8">
                   <ProductList title="" items={products} />
                 </div>
               </div>

@@ -23,11 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         {/* Add a global CSS class for gradients directly in globals.css */}
-        <div className="gradient-container">
+        <div className="gradient-container min-h-screen flex flex-col">
           <ToastProvider />
           <ModalProvider />
           <NavbarWrapper />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer />
         </div>
       </body>
