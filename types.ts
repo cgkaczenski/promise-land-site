@@ -10,12 +10,12 @@ export interface Product {
 
 export interface Post {
   id: string;
-  category: Category;
+  category?: Category;
   name: string;
   description: string;
-  isFeatured: boolean;
-  images: Image[];
-  date: Date;
+  isFeatured?: boolean;
+  images?: Image[];
+  date?: Date | string;
 }
 
 export interface Image {

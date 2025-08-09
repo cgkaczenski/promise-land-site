@@ -16,21 +16,69 @@ const getPosts = async (query: Query): Promise<Post[]> => {
   }
 
   try {
-    const url = qs.stringifyUrl({
-      url: URL,
-      query: {
-        categoryId: query.categoryId,
-        isFeatured: query.isFeatured,
-      },
-    });
+    // Filter out undefined values before creating the query string
+    const queryParams: Record<string, string | boolean> = {};
 
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch posts: ${res.status}`);
+    if (query.categoryId) {
+      queryParams.categoryId = query.categoryId;
     }
 
-    return res.json();
+    if (query.isFeatured !== undefined) {
+      queryParams.isFeatured = query.isFeatured;
+    }
+
+    const url = qs.stringifyUrl({
+      url: URL,
+      query: queryParams,
+    });
+
+    console.log("Fetching posts from:", url);
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
+    }
+
+    const data = await res.json();
+    console.log("Posts fetched successfully:", data);
+
+    // Validate the data structure
+    if (!Array.isArray(data)) {
+      console.error("API returned non-array data:", data);
+      return [];
+    }
+
+    // Validate each post has required fields and provide defaults for optional fields
+    const validPosts = data
+      .filter((post: any) => {
+        if (!post.id || !post.name || !post.description) {
+          console.warn("Post missing required fields:", post);
+          return false;
+        }
+        return true;
+      })
+      .map((post: any) => ({
+        id: post.id,
+        category: post.category || null,
+        name: post.name,
+        description: post.description,
+        isFeatured: post.isFeatured || false,
+        images: post.images || [],
+        date: post.date || new Date().toISOString(),
+      }));
+
+    console.log(
+      `Found ${validPosts.length} valid posts out of ${data.length} total`
+    );
+
+    return validPosts;
   } catch (error) {
     console.error("Error fetching posts:", error);
     // Return an empty array to prevent build failures

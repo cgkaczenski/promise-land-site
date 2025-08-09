@@ -2,6 +2,8 @@ import Container from "@/components/ui/container";
 import PostList from "@/components/post-list";
 import getPosts from "@/actions/get-posts";
 
+export const revalidate = 0;
+
 const ActivityPage: React.FC = async () => {
   const posts = await getPosts({});
 
