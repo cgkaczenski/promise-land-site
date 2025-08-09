@@ -49,7 +49,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ categories }) => {
         <div className="py-4 flex flex-col h-full">
           <div className="px-3 py-2">
             <Link href="/" onClick={() => setOpen(false)}>
-              <p className="font-bold text-xl">Promised Land</p>
+              <p className="font-bold text-xl">The Promised Land</p>
             </Link>
           </div>
           <div className="flex flex-col px-3 py-2 space-y-3">

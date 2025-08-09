@@ -8,9 +8,9 @@ const getStore = async (): Promise<Store> => {
     console.warn("NEXT_PUBLIC_API_URL is not configured");
     return {
       id: "",
-      name: "Promised Land",
+      name: "The Promised Land",
       description:
-        "Promised Land Orphanage - Making a difference in children's lives.",
+        "The Promised Land Orphanage - Making a difference in children's lives.",
       billboardId: "",
     };
   }
@@ -28,9 +28,9 @@ const getStore = async (): Promise<Store> => {
     // Return a default store object to prevent build failures
     return {
       id: "",
-      name: "Promised Land",
+      name: "The Promised Land",
       description:
-        "Promised Land Orphanage - Making a difference in children's lives.",
+        "The Promised Land Orphanage - Making a difference in children's lives.",
       billboardId: "",
     };
   }

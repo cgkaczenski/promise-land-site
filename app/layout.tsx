@@ -22,8 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        {/* Add a global CSS class for gradients directly in globals.css */}
-        <div className="gradient-container min-h-screen flex flex-col">
+        {/* Top gradient blur */}
+        <div aria-hidden="true" className="gradient-blur-top">
+          <div className="gradient-shape-top" />
+        </div>
+
+        {/* Bottom gradient blur */}
+        <div aria-hidden="true" className="gradient-blur-bottom">
+          <div className="gradient-shape-bottom" />
+        </div>
+
+        <div className="flex flex-col min-h-screen">
           <ToastProvider />
           <ModalProvider />
           <NavbarWrapper />

@@ -108,65 +108,63 @@ const CartPage = () => {
   }
 
   return (
-    <div className="bg-white">
-      <Container>
-        <div className="px-4 py-16 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-black">Donation Cart</h1>
-          <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
-            <div className="lg:col-span-7">
-              {items.length === 0 && (
-                <div className="text-center space-y-4">
-                  <p className="text-neutral-500">
-                    No items added to donation cart.
-                  </p>
-                  <Link href="/donate">
-                    <Button className="mt-2 bg-indigo-600">
-                      Go to Donate Page
-                    </Button>
-                  </Link>
-                </div>
-              )}
-              <ul>
-                {items.map((item) => (
-                  <CartItem key={item.id} data={item} />
-                ))}
-              </ul>
+    <Container>
+      <div className="px-4 py-16 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold text-black">Donation Cart</h1>
+        <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
+          <div className="lg:col-span-7">
+            {items.length === 0 && (
+              <div className="text-center space-y-4">
+                <p className="text-neutral-500">
+                  No items added to donation cart.
+                </p>
+                <Link href="/donate">
+                  <Button className="mt-2 bg-indigo-600">
+                    Go to Donate Page
+                  </Button>
+                </Link>
+              </div>
+            )}
+            <ul>
+              {items.map((item) => (
+                <CartItem key={item.id} data={item} />
+              ))}
+            </ul>
 
-              {/* Phone number input using shadcn Form components */}
-              {items.length > 0 && (
-                <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="mt-8  border-gray-200 pt-6"
-                    onChange={() => form.trigger("phoneNumber")}
-                  >
-                    <FormField
-                      control={form.control}
-                      name="phoneNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Phone Number (Optional)</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="(123) 456-7890"
-                              {...field}
-                              onChange={handlePhoneChange}
-                              onBlur={() => form.trigger("phoneNumber")}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </form>
-                </Form>
-              )}
-            </div>
-            <Summary isPhoneNumberValid={isPhoneNumberValid()} />
+            {/* Phone number input using shadcn Form components */}
+            {items.length > 0 && (
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="mt-8  border-gray-200 pt-6"
+                  onChange={() => form.trigger("phoneNumber")}
+                >
+                  <FormField
+                    control={form.control}
+                    name="phoneNumber"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone Number (Optional)</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="(123) 456-7890"
+                            {...field}
+                            onChange={handlePhoneChange}
+                            onBlur={() => form.trigger("phoneNumber")}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </form>
+              </Form>
+            )}
           </div>
+          <Summary isPhoneNumberValid={isPhoneNumberValid()} />
         </div>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

@@ -7,6 +7,12 @@ import { toast } from "react-hot-toast";
 
 import Button from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const NavbarActions = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -42,14 +48,23 @@ const NavbarActions = () => {
   };
 
   return (
-    <div className="ml-auto flex items-center gap-x-4">
-      <Button
-        onClick={handleCartClick}
-        className="flex items-center rounded-full bg-indigo-600 px-4 py-2"
-      >
-        <ShoppingCart size={20} color="white" />
-      </Button>
-    </div>
+    <TooltipProvider>
+      <div className="ml-auto flex items-center gap-x-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              onClick={handleCartClick}
+              className="flex items-center rounded-full bg-indigo-600 px-4 py-2"
+            >
+              <ShoppingCart size={20} color="white" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Checkout</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
   );
 };
 
