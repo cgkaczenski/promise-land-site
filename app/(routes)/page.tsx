@@ -15,11 +15,11 @@ const HomePage = async () => {
       <div className="relative isolate pt-2 px-6 lg:px-8">
         <div className="mx-auto max-w-2xl py-10 sm:py-14 lg:py-18">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 bg-white shadow-sm hover:shadow-md transition-all duration-200">
               Updates and pictures.{" "}
               <Link
                 href="/activities"
-                className="font-semibold text-indigo-600"
+                className="font-semibold text-indigo-600 hover:font-bold transition-all duration-200"
               >
                 <span aria-hidden="true" className="absolute inset-0" />
                 Read more <span aria-hidden="true">&rarr;</span>

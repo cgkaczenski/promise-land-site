@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="mx-auto px-2 py-4 max-w-7xl">
         <p className="text-center text-xs text-black">
           The Promised Land is a 501(c)(3) nonprofit charity registered in the
-          US under EIN: 33-3736069
+          US under EIN: <span className="whitespace-nowrap">33-3736069</span>
         </p>
         <p className="text-center text-xs text-black mt-2">
           Need to manage your subscription?{" "}
